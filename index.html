@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HOSEA-TECH</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    :root {
+      --primary: #c334eb;
+      --secondary: #22223b;
+      --background: #f8f7ff;
+      --text: #22223b;
+      --accent: #4ea8de;
+    }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--background);
+      color: var(--text);
+    }
+    header {
+      background: var(--secondary);
+      color: #fff;
+      padding: 0;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      font-weight: bold;
+      margin-right: 1rem;
+      animation: popIn 1s cubic-bezier(.68,-0.55,.27,1.55);
+    }
+    @keyframes popIn {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .logo-text {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeIn 1.2s;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    nav {
+      display: flex;
+      justify-content: center;
+      background: var(--secondary);
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+    nav li {
+      margin: 0 1.2rem;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.1rem;
+      font-weight: 500;
+      padding: 1rem 0.5rem;
+      position: relative;
+      transition: color 0.2s;
+    }
+    nav a::after {
+      content: '';
+      display: block;
+      width: 0;
+      height: 3px;
+      background: var(--primary);
+      transition: width 0.3s;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+    }
+    nav a:hover, nav a.active {
+      color: var(--primary);
+    }
+    nav a:hover::after, nav a.active::after {
+      width: 100%;
+    }
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding: 3rem 2rem 2rem 2rem;
+      background: linear-gradient(120deg, #f8f7ff 60%, #e0c3fc 100%);
+      min-height: 60vh;
+      animation: fadeIn 1.2s;
+    }
+    .hero-content {
+      flex: 1 1 350px;
+      max-width: 600px;
+      margin-right: 2rem;
+    }
+    .hero-content h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+      animation: slideInLeft 1s;
+    }
+    @keyframes slideInLeft {
+      from { transform: translateX(-40px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    .hero-content p {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      color: var(--secondary);
+      animation: fadeIn 1.5s;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+    .btn {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(195,52,235,0.12);
+      transition: background 0.2s, transform 0.2s;
+      outline: none;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      animation: popIn 1.2s;
+    }
+    .btn:hover {
+      background: var(--accent);
+      transform: translateY(-3px) scale(1.04);
+    }
+    .hero-image {
+      flex: 1 1 320px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 300px;
+      animation: slideInRight 1.2s;
+    }
+    @keyframes slideInRight {
+      from { transform: translateX(40px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    .hero-image img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(34,34,59,0.12);
+      object-fit: cover;
+    }
+    section {
+      padding: 3rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      animation: fadeIn 1.2s;
+    }
+    section h2 {
+      color: var(--primary);
+      font-size: 2.2rem;
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+    .about-content {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 2rem;
+      justify-content: center;
+    }
+    .about-image {
+      flex: 1 1 300px;
+      min-width: 260px;
+      max-width: 350px;
+    }
+    .about-image img {
+      width: 100%;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(195,52,235,0.08);
+      object-fit: cover;
+    }
+    .about-text {
+      flex: 2 1 400px;
+      font-size: 1.15rem;
+      color: var(--secondary);
+    }
+    .services-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .service-card {
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 4px 24px rgba(195,52,235,0.08);
+      padding: 2rem 1.5rem;
+      flex: 1 1 260px;
+      max-width: 320px;
+      min-width: 220px;
+      text-align: center;
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: popIn 1.2s;
+    }
+    .service-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 8px 32px rgba(195,52,235,0.16);
+    }
+    .service-card i {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+    .service-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.7rem;
+      color: var(--secondary);
+    }
+    .service-card p {
+      font-size: 1rem;
+      color: #444;
+    }
+    .portfolio-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+    .portfolio-item {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(195,52,235,0.08);
+      overflow: hidden;
+      flex: 1 1 260px;
+      max-width: 320px;
+      min-width: 220px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      animation: popIn 1.2s;
+    }
+    .portfolio-item:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 8px 32px rgba(195,52,235,0.16);
+    }
+    .portfolio-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+    .portfolio-item .caption {
+      padding: 1rem;
+      color: var(--secondary);
+      font-size: 1.05rem;
+      text-align: center;
+    }
+    .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      align-items: flex-start;
+      margin-top: 2rem;
+    }
+    .contact-details {
+      flex: 1 1 300px;
+      min-width: 260px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(195,52,235,0.08);
+      padding: 2rem 1.5rem;
+      font-size: 1.1rem;
+      color: var(--secondary);
+      animation: popIn 1.2s;
+    }
+    .contact-details a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .contact-details a:hover {
+      color: var(--accent);
+    }
+    .contact-details i {
+      margin-right: 0.7rem;
+      color: var(--primary);
+    }
+    .contact-form {
+      flex: 1 1 320px;
+      min-width: 260px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(195,52,235,0.08);
+      padding: 2rem 1.5rem;
+      animation: popIn 1.2s;
+    }
+    .contact-form form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-form input, .contact-form textarea {
+      padding: 0.8rem;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      font-size: 1rem;
+      font-family: inherit;
+      resize: none;
+    }
+    .contact-form button {
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(195,52,235,0.12);
+      transition: background 0.2s, transform 0.2s;
+      outline: none;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      animation: popIn 1.2s;
+    }
+    .contact-form button:hover {
+      background: var(--accent);
+      transform: translateY(-3px) scale(1.04);
+    }
+    .social-icons {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+      justify-content: center;
+    }
+    .social-icons a {
+      color: var(--primary);
+      font-size: 1.7rem;
+      transition: color 0.2s, transform 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #fff;
+      width: 44px;
+      height: 44px;
+      box-shadow: 0 2px 8px rgba(195,52,235,0.08);
+      animation: popIn 1.2s;
+    }
+    .social-icons a:hover {
+      color: #fff;
+      background: var(--primary);
+      transform: scale(1.1);
+    }
+    footer {
+      background: var(--secondary);
+      color: #fff;
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-size: 1rem;
+      margin-top: 2rem;
+    }
+    @media (max-width: 900px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem 1rem;
+      }
+      .hero-content {
+        margin-right: 0;
+        margin-bottom: 2rem;
+      }
+      .about-content {
+        flex-direction: column;
+        text-align: center;
+      }
+      .about-image {
+        margin-bottom: 1.5rem;
+      }
+    }
+    @media (max-width: 600px) {
+      .logo {
+        padding: 1rem 1rem;
+      }
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+      nav li {
+        margin: 0.5rem 0;
+      }
+      section {
+        padding: 2rem 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <div class="logo-icon">
+        <i class="fas fa-laptop-code"></i>
+      </div>
+      <span class="logo-text">HOSEA-TECH</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#team">Team</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Empowering Digital Innovation</h1>
+      <p>HOSEA-TECH is a leading web development company based in Windhoek, Namibia. Specializing in modern, responsive, and high-performance websites and applications, HOSEA-TECH transforms ideas into digital solutions that drive business growth and success.</p>
+      <div class="hero-buttons">
+        <a href="#services" class="btn">Our Services</a>
+        <a href="#contact" class="btn">Contact Us</a>
+      </div>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/iipingeh.hossie.1/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/hossieh33.00000/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="https://www.tiktok.com/@hoseaiipinge707gmail.co3" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+        <a href="https://wa.me/264812621200" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80" alt="People using computer">
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>About HOSEA-TECH</h2>
+    <div class="about-content">
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=600&q=80" alt="Team working on computers">
+      </div>
+      <div class="about-text">
+        HOSEA-TECH is dedicated to delivering innovative digital solutions tailored to client needs. With a passion for technology and a commitment to excellence, the team crafts websites and applications that are visually stunning, user-friendly, and optimized for performance. Based in Windhoek, Namibia, HOSEA-TECH serves businesses of all sizes, helping them establish a strong online presence and achieve their digital goals.
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <h2>Our Services</h2>
+    <div class="services-list">
+      <div class="service-card">
+        <i class="fas fa-code"></i>
+        <h3>Web Development</h3>
+        <p>Custom websites and web applications built with the latest technologies for speed, security, and scalability.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-mobile-alt"></i>
+        <h3>Mobile App Development</h3>
+        <p>Cross-platform mobile apps designed for seamless user experiences on Android and iOS devices.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-paint-brush"></i>
+        <h3>UI/UX Design</h3>
+        <p>Modern, intuitive, and engaging interfaces that delight users and enhance brand identity.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-cloud"></i>
+        <h3>Cloud Solutions</h3>
+        <p>Cloud integration, hosting, and deployment services for reliable and scalable digital products.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-search"></i>
+        <h3>SEO & Digital Marketing</h3>
+        <p>Boost online visibility and reach with expert SEO strategies and targeted digital marketing campaigns.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="portfolio">
+    <h2>Portfolio</h2>
+    <div class="portfolio-gallery">
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=600&q=80" alt="Project 1">
+        <div class="caption">E-commerce Platform for Local Retailer</div>
+      </div>
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=600&q=80" alt="Project 2">
+        <div class="caption">Responsive Business Website for Startup</div>
+      </div>
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Project 3">
+        <div class="caption">Mobile App for Event Management</div>
+      </div>
+      <div class="portfolio-item">
+        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=600&q=80" alt="Project 4">
+        <div class="caption">Cloud-Based Inventory System</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="team">
+    <h2>Our Team</h2>
+    <div class="about-content">
+      <div class="about-image">
+        <img src="https://images.unsplash.com/photo-1521737852567-6949f3f9f2b5?auto=format&fit=crop&w=600&q=80" alt="Team member">
+      </div>
+      <div class="about-text">
+        The HOSEA-TECH team is composed of passionate developers, creative designers, and strategic thinkers. Each member brings unique skills and expertise, working collaboratively to deliver outstanding results for clients. The team's commitment to continuous learning ensures that HOSEA-TECH stays ahead of industry trends and delivers cutting-edge solutions.
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <div class="contact-info">
+      <div class="contact-details">
+        <p><i class="fas fa-map-marker-alt"></i>Windhoek, Namibia</p>
+        <p><i class="fas fa-phone"></i><a href="https://wa.me/264812621200" target="_blank">+264 81 262 1200</a></p>
+        <p><i class="fas fa-envelope"></i><a href="mailto:hoseaiipinge707@gmail.com">hoseaiipinge707@gmail.com</a></p>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/iipingeh.hossie.1/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/hossieh33.00000/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.tiktok.com/@hoseaiipinge707gmail.co3" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="https://wa.me/264812621200" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <form id="contactForm">
+          <input type="text" placeholder="Your Name" required>
+          <input type="email" placeholder="Your Email" required>
+          <textarea rows="4" placeholder="Your Message" required></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+        <div id="formMessage" style="margin-top:1rem;color:var(--primary);display:none;">Thank you for contacting us!</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 HOSEA-TECH. All rights reserved.
+  </footer>
+
+  <script>
+    // Smooth scroll for navigation
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        if (this.hash) {
+          e.preventDefault();
+          document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+          this.classList.add('active');
+          document.querySelector(this.hash).scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    });
+
+    // Contact form fake submit
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      document.getElementById('formMessage').style.display = 'block';
+      setTimeout(() => {
+        document.getElementById('formMessage').style.display = 'none';
+        document.getElementById('contactForm').reset();
+      }, 3000);
+    });
+  </script>
+</body>
+</html>
